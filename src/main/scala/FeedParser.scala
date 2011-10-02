@@ -34,16 +34,16 @@ trait FeedParser {
   // -----------------------------------------------------------------------
 
   /** Returns the main identifier tag. */
-  def idTag: String
+  def feedTag: String
 
   /** Returns the article tag. */
   def articleTag: String
 
-  /** Returns the article summary tag. */
-  def articleSummaryTag: String
+  /** Returns the article description tag. */
+  def articleDescTag: String
 
-  /** Returns the published tag. */
-  def pubTag: String
+  /** Returns the published date tag. */
+  def pubDateTag: String
 
   /** Returns the title tag. */
   def titleTag: String = "title"
@@ -56,49 +56,44 @@ trait FeedParser {
   // -----------------------------------------------------------------------
 
   /** Returns the date parser. */
-  def dateParser: java.text.DateFormat
+  def dateFormat: java.text.DateFormat
 
   /** Returns the title of the feed. */
-  def title(xml: XML): String
+  def title(implicit xml: XML): String
 
   /** Returns the articles of the given feed. */
-  def articles(xml: XML): Seq[Article] = xml \\ articleTag map { xml =>
+  def articles(implicit xml: XML): Seq[Article] = xml \\ articleTag map { implicit xml =>
     val date = try {
-      Some(dateParser.parse(articlePublishedAt(xml)))
+      Some(dateFormat.parse(articlePubDate))
     } catch {
       case _ => None
     }
 
-    Article (
-      articleTitle(xml),
-      date,
-      articleSummary(xml),
-      articleLinks(xml)
-    )
+    Article(articleTitle, date, articleDesc, articleLinks)
   }
 
   /** Returns the title of the given article. */
-  def articleTitle(xml: XML): String =
+  def articleTitle(implicit xml: XML): String =
     xml \\ titleTag text
 
   /** Returns when the article has been published. */
-  def articlePublishedAt(xml: XML): String =
-    xml \\ pubTag text
+  def articlePubDate(implicit xml: XML): String =
+    xml \\ pubDateTag text
 
   /** Optionally returns the summary of the given article. */
-  def articleSummary(xml: XML): Option[String] =
-    (xml \\ articleSummaryTag).headOption map { _.text.trim } filterNot { _ == "" }
+  def articleDesc(implicit xml: XML): Option[String] =
+    (xml \\ articleDescTag).headOption map { _.text.trim } filterNot { _ == "" }
 
   /** Returns the links the article provides. */
-  def articleLinks(xml: XML): Seq[String]
+  def articleLinks(implicit xml: XML): Seq[String]
 
   // -----------------------------------------------------------------------
   // extractors
   // -----------------------------------------------------------------------
 
   /** Optionally returns a parsed feed. */
-  def unapply(xml: XML): Option[Feed] = (xml \\ idTag).headOption map { xml =>
-    Feed(title(xml), articles(xml))
+  def unapply(implicit xml: XML): Option[Feed] = (xml \\ feedTag).headOption map { implicit xml =>
+    Feed(title, articles)
   }
 
 }

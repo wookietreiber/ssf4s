@@ -35,7 +35,7 @@ class ArticlePublishedAtSpec extends Specification { def is =
   // fragments
   // -----------------------------------------------------------------------
 
-  "Article publishedAt specification"                                         ^
+  "Article pubDate specification"                                         ^
                                                                              p^
   "Articles should have a published date"                                     ^
     "Atom 1.0 feeds"        ! pub("/atom-1.0.xml")                            ^
@@ -46,7 +46,7 @@ class ArticlePublishedAtSpec extends Specification { def is =
   // -----------------------------------------------------------------------
 
   def pub(res: String) = ((_: Option[Date]) must beSome) forall {
-    parse(res).articles map { _ publishedAt }
+    parse(res).articles map { _ pubDate }
   }
 
 }
