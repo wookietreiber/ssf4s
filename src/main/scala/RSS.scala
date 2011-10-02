@@ -33,4 +33,6 @@ object RSS extends FeedParser {
   override lazy val articleSummaryTag = "description"
 
   override def title(xml: XML) = xml \\ "channel" \ titleTag text
+
+  override def articleLinks(xml: XML) = xml \\ linkTag map { _ text }
 }

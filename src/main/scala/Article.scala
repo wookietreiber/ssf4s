@@ -30,8 +30,13 @@ package ssf4s
   *
   * @param title Returns this articles title.
   * @param summary Optionally returns this articles summary, may be html.
+  * @param links Returns the links provided by this article.
   */
-case class Article(title: String, summary: Option[String]) {
+case class Article(
+    title: String,
+    summary: Option[String],
+    links: Seq[String]) {
+
   /** Returns this articles title. */
   override def toString = title
 }

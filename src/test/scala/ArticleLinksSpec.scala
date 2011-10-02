@@ -26,58 +26,27 @@
 
 package ssf4s
 
-/** Feed Parser. */
-trait FeedParser {
+import org.specs2._
+import ResourceParser._
+
+class ArticleLinksSpec extends Specification { def is =
 
   // -----------------------------------------------------------------------
-  // tags
+  // fragments
   // -----------------------------------------------------------------------
 
-  /** Returns the main identifier tag. */
-  def idTag: String
-
-  /** Returns the article tag. */
-  def articleTag: String
-
-  /** Returns the article summary tag. */
-  def articleSummaryTag: String
-
-  /** Returns the title tag. */
-  def titleTag: String = "title"
-
-  /** Returns the link tag. */
-  def linkTag: String = "link"
-
+  "Article links specification"                                               ^
+                                                                             p^
+  "Links should not be empty for articles of valid samples of"                ^
+    "Atom 1.0 feeds"        ! links("/atom-1.0.xml")                          ^
+    "RSS 2.0 feeds"         ! links("/rss-2.0.xml")                           ^
+                                                                            end
   // -----------------------------------------------------------------------
-  // parsing
+  // tests
   // -----------------------------------------------------------------------
 
-  /** Returns the title of the feed. */
-  def title(xml: XML): String
-
-  /** Returns the articles of the given feed. */
-  def articles(xml: XML): Seq[Article] = xml \\ articleTag map { xml =>
-    Article(articleTitle(xml), articleSummary(xml), articleLinks(xml))
-  }
-
-  /** Returns the title of the given article. */
-  def articleTitle(xml: XML): String =
-    xml \\ titleTag text
-
-  /** Optionally returns the summary of the given article. */
-  def articleSummary(xml: XML): Option[String] =
-    (xml \\ articleSummaryTag).headOption map { _.text.trim } filterNot { _ == "" }
-
-  /** Returns the links the article provides. */
-  def articleLinks(xml: XML): Seq[String]
-
-  // -----------------------------------------------------------------------
-  // extractors
-  // -----------------------------------------------------------------------
-
-  /** Optionally returns a parsed feed. */
-  def unapply(xml: XML): Option[Feed] = (xml \\ idTag).headOption map { xml =>
-    Feed(title(xml), articles(xml))
+  def links(res: String) = ((_: Seq[String]) must not be empty) forall {
+    parse(res).articles map { _ links }
   }
 
 }

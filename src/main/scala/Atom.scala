@@ -33,4 +33,8 @@ object Atom extends FeedParser {
   override lazy val articleSummaryTag = "summary"
 
   override def title(xml: XML) = xml \ titleTag text
+
+  override def articleLinks(xml: XML) = xml \\ linkTag flatMap {
+    _.attributes.asAttrMap.get("href").toList
+  }
 }
