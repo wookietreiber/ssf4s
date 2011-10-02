@@ -37,4 +37,6 @@ package object ssf4s {
 
   type Date = java.util.Date
 
+  type URL = java.net.URL
+
 }

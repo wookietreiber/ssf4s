@@ -31,6 +31,9 @@ object Feed {
   /** Returns a feed by downloading and parsing the URL content. */
   def apply(url: String): Feed = apply(xml.XML.load(url))
 
+  /** Returns a feed by downloading and parsing the URL content. */
+  def apply(url: URL): Feed = apply(xml.XML.load(url))
+
   /** Returns a feed by parsing the XML content. */
   def apply(xml: XML): Feed = xml match {
     case RSS(feed) => feed
