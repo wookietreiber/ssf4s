@@ -32,6 +32,8 @@ object Atom extends FeedParser {
   override lazy val pubTag = "updated"
   override lazy val articleTag = "entry"
   override lazy val articleSummaryTag = "summary"
+  override lazy val dateParser =
+    new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX")
 
   override def title(xml: XML) = xml \ titleTag text
 

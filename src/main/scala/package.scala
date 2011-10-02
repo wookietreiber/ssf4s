@@ -35,4 +35,6 @@ package object ssf4s {
 
   val XML = scala.xml.XML
 
+  type Date = java.util.Date
+
 }

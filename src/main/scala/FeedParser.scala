@@ -55,14 +55,23 @@ trait FeedParser {
   // parsing
   // -----------------------------------------------------------------------
 
+  /** Returns the date parser. */
+  def dateParser: java.text.DateFormat
+
   /** Returns the title of the feed. */
   def title(xml: XML): String
 
   /** Returns the articles of the given feed. */
   def articles(xml: XML): Seq[Article] = xml \\ articleTag map { xml =>
+    val date = try {
+      Some(dateParser.parse(articlePublishedAt(xml)))
+    } catch {
+      case _ => None
+    }
+
     Article (
       articleTitle(xml),
-      articlePublishedAt(xml),
+      date,
       articleSummary(xml),
       articleLinks(xml)
     )

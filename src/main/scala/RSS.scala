@@ -32,6 +32,8 @@ object RSS extends FeedParser {
   override lazy val pubTag = "pubDate"
   override lazy val articleTag = "item"
   override lazy val articleSummaryTag = "description"
+  override lazy val dateParser =
+    new java.text.SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z")
 
   override def title(xml: XML) = xml \\ "channel" \ titleTag text
 

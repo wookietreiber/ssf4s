@@ -45,7 +45,7 @@ class ArticlePublishedAtSpec extends Specification { def is =
   // tests
   // -----------------------------------------------------------------------
 
-  def pub(res: String) = ((_: String) must not be empty) forall {
+  def pub(res: String) = ((_: Option[Date]) must beSome) forall {
     parse(res).articles map { _ publishedAt }
   }
 
