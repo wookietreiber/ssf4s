@@ -29,6 +29,7 @@ package ssf4s
 /** Atom feed parser. */
 object Atom extends FeedParser {
   override lazy val feedTag = "feed"
+  override lazy val feedDescTag = "subtitle"
   override lazy val pubDateTag = "updated"
   override lazy val articleTag = "entry"
   override lazy val articleDescTag = "summary"
@@ -36,6 +37,8 @@ object Atom extends FeedParser {
     new java.text.SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssX")
 
   override def title(implicit xml: XML) = xml \ titleTag text
+  override def description(implicit xml: XML) = (xml \ feedDescTag).
+    headOption map { _ text } filter { _ nonEmpty }
 
   override def articleLinks(implicit xml: XML) = xml \\ linkTag flatMap {
     _.attributes.asAttrMap.get("href").toList

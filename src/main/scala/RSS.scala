@@ -29,6 +29,7 @@ package ssf4s
 /** RSS feed parser. */
 object RSS extends FeedParser {
   override lazy val feedTag = "rss"
+  override lazy val feedDescTag = "description"
   override lazy val pubDateTag = "pubDate"
   override lazy val articleTag = "item"
   override lazy val articleDescTag = "description"
@@ -36,6 +37,8 @@ object RSS extends FeedParser {
     new java.text.SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss Z")
 
   override def title(implicit xml: XML) = xml \\ "channel" \ titleTag text
+  override def description(implicit xml: XML) = (xml \\ "channel" \ feedDescTag).
+    headOption map { _ text } filter { _ nonEmpty }
 
   override def articleLinks(implicit xml: XML) = xml \\ linkTag map { _ text }
 }

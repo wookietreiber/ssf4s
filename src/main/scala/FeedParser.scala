@@ -36,6 +36,9 @@ trait FeedParser {
   /** Returns the main identifier tag. */
   def feedTag: String
 
+  /** Returns the feed description tag. */
+  def feedDescTag: String
+
   /** Returns the article tag. */
   def articleTag: String
 
@@ -60,6 +63,9 @@ trait FeedParser {
 
   /** Returns the title of the feed. */
   def title(implicit xml: XML): String
+
+  /** Optionally returns the feeds description. */
+  def description(implicit xml: XML): Option[String]
 
   /** Returns the articles of the given feed. */
   def articles(implicit xml: XML): Seq[Article] = xml \\ articleTag map { implicit xml =>
@@ -93,7 +99,7 @@ trait FeedParser {
 
   /** Optionally returns a parsed feed. */
   def unapply(implicit xml: XML): Option[Feed] = (xml \\ feedTag).headOption map { implicit xml =>
-    Feed(title, articles)
+    Feed(title, description, articles)
   }
 
 }
