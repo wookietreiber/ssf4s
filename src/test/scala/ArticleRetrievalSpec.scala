@@ -27,25 +27,24 @@
 package ssf4s
 
 import org.specs2._
+import ResourceParser._
 
-class FeedSpec extends Specification { def is =
+class ArticleRetrievalSpec extends Specification { def is =
 
   // -----------------------------------------------------------------------
   // fragments
   // -----------------------------------------------------------------------
 
-  "Feed specification"                                                        ^
+  "Article retrieval specification"                                           ^
                                                                              p^
-  "The feed factory should parse"                                             ^
-    "Atom 1.0 feeds"              ! parse("/atom-1.0.xml")                    ^
-    "RSS 2.0 feeds"               ! parse("/rss-2.0.xml")                     ^
+  "The feed factory should retrieve articles of"                              ^
+    "Atom 1.0 feeds"              ! articles("/atom-1.0.xml")                 ^
+    "RSS 2.0 feeds"               ! articles("/rss-2.0.xml")                  ^
                                                                             end
   // -----------------------------------------------------------------------
   // tests
   // -----------------------------------------------------------------------
 
-  def parse(resource: String) = Feed (
-    XML.load(getClass.getResource(resource))
-  ).articles must not be empty
+  def articles(res: String) = parse(res).articles must not be empty
 
 }

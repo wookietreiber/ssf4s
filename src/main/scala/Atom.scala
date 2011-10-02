@@ -26,24 +26,11 @@
 
 package ssf4s
 
-/** Feed factory. */
-object Feed {
-  /** Returns a feed by downloading and parsing the URL content. */
-  def apply(url: String): Feed = apply(xml.XML.load(url))
+/** Atom feed parser. */
+object Atom extends FeedParser {
+  override lazy val idTag = "feed"
+  override lazy val articleTag = "entry"
+  override lazy val articleSummaryTag = "summary"
 
-  /** Returns a feed by parsing the XML content. */
-  def apply(xml: XML): Feed = xml match {
-    case RSS(feed) => feed
-    case Atom(feed) => feed
-  }
-}
-
-/** Holds feed information and its articles.
-  *
-  * @param title Returns this feeds title.
-  * @param articles Returns this feeds articles, latest first.
-  */
-case class Feed(title: String, articles: Seq[Article]) {
-  /** Returns this feeds title. */
-  override def toString = title
+  override def title(xml: XML) = xml \ titleTag text
 }

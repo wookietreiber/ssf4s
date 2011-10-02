@@ -31,7 +31,7 @@ package object ssf4s {
   // aliases
   // -----------------------------------------------------------------------
 
-  type XML = scala.xml.Elem
+  type XML = scala.xml.Node
 
   val XML = scala.xml.XML
 

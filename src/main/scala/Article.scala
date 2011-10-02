@@ -29,8 +29,9 @@ package ssf4s
 /** Holds the information of a single article.
   *
   * @param title Returns this articles title.
+  * @param summary Optionally returns this articles summary, may be html.
   */
-case class Article(title: String) {
+case class Article(title: String, summary: Option[String]) {
   /** Returns this articles title. */
   override def toString = title
 }

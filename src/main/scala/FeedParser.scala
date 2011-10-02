@@ -26,24 +26,52 @@
 
 package ssf4s
 
-/** Feed factory. */
-object Feed {
-  /** Returns a feed by downloading and parsing the URL content. */
-  def apply(url: String): Feed = apply(xml.XML.load(url))
+/** Feed Parser. */
+trait FeedParser {
 
-  /** Returns a feed by parsing the XML content. */
-  def apply(xml: XML): Feed = xml match {
-    case RSS(feed) => feed
-    case Atom(feed) => feed
+  // -----------------------------------------------------------------------
+  // tags
+  // -----------------------------------------------------------------------
+
+  /** Returns the main identifier tag. */
+  def idTag: String
+
+  /** Returns the article tag. */
+  def articleTag: String
+
+  /** Returns the article summary tag. */
+  def articleSummaryTag: String
+
+  /** Returns the title tag. */
+  def titleTag: String = "title"
+
+  // -----------------------------------------------------------------------
+  // parsing
+  // -----------------------------------------------------------------------
+
+  /** Returns the title of the feed. */
+  def title(xml: XML): String
+
+  /** Returns the articles of the given feed. */
+  def articles(xml: XML): Seq[Article] = xml \\ articleTag map { xml =>
+    Article(articleTitle(xml), articleSummary(xml))
   }
-}
 
-/** Holds feed information and its articles.
-  *
-  * @param title Returns this feeds title.
-  * @param articles Returns this feeds articles, latest first.
-  */
-case class Feed(title: String, articles: Seq[Article]) {
-  /** Returns this feeds title. */
-  override def toString = title
+  /** Returns the title of the given article. */
+  def articleTitle(xml: XML): String =
+    xml \\ titleTag text
+
+  /** Optionally returns the summary of the given article. */
+  def articleSummary(xml: XML): Option[String] =
+    (xml \\ articleSummaryTag).headOption map { _.text.trim } filterNot { _ == "" }
+
+  // -----------------------------------------------------------------------
+  // extractors
+  // -----------------------------------------------------------------------
+
+  /** Optionally returns a parsed feed. */
+  def unapply(xml: XML): Option[Feed] = (xml \\ idTag).headOption map { xml =>
+    Feed(title(xml), articles(xml))
+  }
+
 }
