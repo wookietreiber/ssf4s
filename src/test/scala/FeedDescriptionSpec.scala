@@ -37,15 +37,15 @@ class FeedDescriptionSpec extends Specification { def is =
 
   "Feed description specification"                                            ^
                                                                              p^
-  "Feed descriptions should not be empty for non-empty samples"               ^
+  "Feed descriptions should not be empty for non-empty samples of"            ^
     "Atom 1.0 feeds"        ! desc("/atom-1.0.xml")                           ^
     "RSS 2.0 feeds"         ! desc("/rss-2.0.xml")                            ^
                                                                              p^
-  "Feed descriptions should be empty for non-description samples"             ^
+  "Feed descriptions should be empty for non-description samples of"          ^
     "Atom 1.0 feeds"        ! nodesc("/atom-1.0-noDesc.xml")                  ^
     "RSS 2.0 feeds"         ! nodesc("/rss-2.0-noDesc.xml")                   ^
                                                                              p^
-  "Feed descriptions should be empty for empty description samples"           ^
+  "Feed descriptions should be empty for empty description samples of"        ^
     "Atom 1.0 feeds"        ! nodesc("/atom-1.0-emptyDesc.xml")               ^
     "RSS 2.0 feeds"         ! nodesc("/rss-2.0-emptyDesc.xml")                ^
                                                                             end

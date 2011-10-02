@@ -37,7 +37,7 @@ class ArticleRetrievalSpec extends Specification { def is =
 
   "Article retrieval specification"                                           ^
                                                                              p^
-  "The feed factory should retrieve articles of"                              ^
+  "Articles should not be empty for non-empty samples of"                     ^
     "Atom 1.0 feeds"              ! articles("/atom-1.0.xml")                 ^
     "RSS 2.0 feeds"               ! articles("/rss-2.0.xml")                  ^
                                                                             end

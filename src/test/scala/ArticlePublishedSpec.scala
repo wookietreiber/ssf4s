@@ -29,23 +29,23 @@ package ssf4s
 import org.specs2._
 import ResourceParser._
 
-class ArticlePublishedAtSpec extends Specification { def is =
+class ArticlePublishedSpec extends Specification { def is =
 
   // -----------------------------------------------------------------------
   // fragments
   // -----------------------------------------------------------------------
 
-  "Article pubDate specification"                                         ^
+  "Article publication date specification"                                    ^
                                                                              p^
-  "Articles should have a published date"                                     ^
-    "Atom 1.0 feeds"        ! pub("/atom-1.0.xml")                            ^
-    "RSS 2.0 feeds"         ! pub("/rss-2.0.xml")                             ^
+  "Publication dates should not be empty for non-empty samples of"            ^
+    "Atom 1.0 feeds"        ! pubDate("/atom-1.0.xml")                        ^
+    "RSS 2.0 feeds"         ! pubDate("/rss-2.0.xml")                         ^
                                                                             end
   // -----------------------------------------------------------------------
   // tests
   // -----------------------------------------------------------------------
 
-  def pub(res: String) = ((_: Option[Date]) must beSome) forall {
+  def pubDate(res: String) = ((_: Option[Date]) must beSome) forall {
     parse(res).articles map { _ pubDate }
   }
 

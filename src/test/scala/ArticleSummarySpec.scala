@@ -37,11 +37,11 @@ class ArticleSummarySpec extends Specification { def is =
 
   "Article summary specification"                                             ^
                                                                              p^
-  "Summaries should not be empty for articles of valid samples of"            ^
+  "Summaries should not be empty for articles with non-empty samples of"      ^
     "Atom 1.0 feeds"        ! summary("/atom-1.0.xml")                        ^
     "RSS 2.0 feeds"         ! summary("/rss-2.0.xml")                         ^
                                                                              p^
-  "Summaries should be empty for articles of non-valid samples of"            ^
+  "Summaries should be empty for articles with empty samples of"              ^
     "Atom 1.0 feeds"        ! nosummary("/atom-1.0-noArtSum.xml")             ^
     "RSS 2.0 feeds"         ! nosummary("/rss-2.0-noArtSum.xml")              ^
                                                                             end

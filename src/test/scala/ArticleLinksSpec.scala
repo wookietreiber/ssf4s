@@ -37,7 +37,7 @@ class ArticleLinksSpec extends Specification { def is =
 
   "Article links specification"                                               ^
                                                                              p^
-  "Links should not be empty for articles of valid samples of"                ^
+  "Links should not be empty for articles with non-empty samples of"          ^
     "Atom 1.0 feeds"        ! links("/atom-1.0.xml")                          ^
     "RSS 2.0 feeds"         ! links("/rss-2.0.xml")                           ^
                                                                             end
