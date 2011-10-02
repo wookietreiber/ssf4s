@@ -42,6 +42,9 @@ trait FeedParser {
   /** Returns the article summary tag. */
   def articleSummaryTag: String
 
+  /** Returns the published tag. */
+  def pubTag: String
+
   /** Returns the title tag. */
   def titleTag: String = "title"
 
@@ -57,12 +60,21 @@ trait FeedParser {
 
   /** Returns the articles of the given feed. */
   def articles(xml: XML): Seq[Article] = xml \\ articleTag map { xml =>
-    Article(articleTitle(xml), articleSummary(xml), articleLinks(xml))
+    Article (
+      articleTitle(xml),
+      articlePublishedAt(xml),
+      articleSummary(xml),
+      articleLinks(xml)
+    )
   }
 
   /** Returns the title of the given article. */
   def articleTitle(xml: XML): String =
     xml \\ titleTag text
+
+  /** Returns when the article has been published. */
+  def articlePublishedAt(xml: XML): String =
+    xml \\ pubTag text
 
   /** Optionally returns the summary of the given article. */
   def articleSummary(xml: XML): Option[String] =

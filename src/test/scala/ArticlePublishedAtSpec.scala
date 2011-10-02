@@ -26,14 +26,27 @@
 
 package ssf4s
 
-/** RSS feed parser. */
-object RSS extends FeedParser {
-  override lazy val idTag = "rss"
-  override lazy val pubTag = "pubDate"
-  override lazy val articleTag = "item"
-  override lazy val articleSummaryTag = "description"
+import org.specs2._
+import ResourceParser._
 
-  override def title(xml: XML) = xml \\ "channel" \ titleTag text
+class ArticlePublishedAtSpec extends Specification { def is =
 
-  override def articleLinks(xml: XML) = xml \\ linkTag map { _ text }
+  // -----------------------------------------------------------------------
+  // fragments
+  // -----------------------------------------------------------------------
+
+  "Article publishedAt specification"                                         ^
+                                                                             p^
+  "Articles should have a published date"                                     ^
+    "Atom 1.0 feeds"        ! pub("/atom-1.0.xml")                            ^
+    "RSS 2.0 feeds"         ! pub("/rss-2.0.xml")                             ^
+                                                                            end
+  // -----------------------------------------------------------------------
+  // tests
+  // -----------------------------------------------------------------------
+
+  def pub(res: String) = ((_: String) must not be empty) forall {
+    parse(res).articles map { _ publishedAt }
+  }
+
 }

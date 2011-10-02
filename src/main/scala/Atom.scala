@@ -29,6 +29,7 @@ package ssf4s
 /** Atom feed parser. */
 object Atom extends FeedParser {
   override lazy val idTag = "feed"
+  override lazy val pubTag = "updated"
   override lazy val articleTag = "entry"
   override lazy val articleSummaryTag = "summary"
 

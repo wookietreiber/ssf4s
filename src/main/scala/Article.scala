@@ -29,11 +29,13 @@ package ssf4s
 /** Holds the information of a single article.
   *
   * @param title Returns this articles title.
+  * @param publishedAt Returns this articles update time.
   * @param summary Optionally returns this articles summary, may be html.
   * @param links Returns the links provided by this article.
   */
 case class Article(
     title: String,
+    publishedAt: String,
     summary: Option[String],
     links: Seq[String]) {
 
