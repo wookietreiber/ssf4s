@@ -14,7 +14,7 @@ object BuildSettings {
     organization         := buildOrganization,
     version              := buildVersion,
     scalaVersion         := buildScalaVersion,
-    libraryDependencies ++= Seq ( specs2 )
+    libraryDependencies ++= Seq ( time, specs2 )
   )
 }
 
@@ -23,5 +23,6 @@ object ssf4sBuild extends Build {
 }
 
 object Dependencies {
+  lazy val time = "org.scala-tools.time" %% "time" % "0.5"
   lazy val specs2 = "org.specs2" %% "specs2" % "1.6.1" % "test"
 }

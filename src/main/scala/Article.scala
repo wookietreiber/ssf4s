@@ -35,7 +35,7 @@ package ssf4s
   */
 case class Article(
     title: String,
-    pubDate: Option[Date],
+    pubDate: Option[DateTime],
     summary: Option[String],
     links: Seq[String]) {
 

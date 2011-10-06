@@ -45,7 +45,7 @@ class ArticlePublishedSpec extends Specification { def is =
   // tests
   // -----------------------------------------------------------------------
 
-  def pubDate(res: String) = ((_: Option[Date]) must beSome) forall {
+  def pubDate(res: String) = ((_: Option[DateTime]) must beSome) forall {
     parse(res).articles map { _ pubDate }
   }
 

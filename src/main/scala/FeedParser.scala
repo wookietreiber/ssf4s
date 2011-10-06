@@ -26,6 +26,8 @@
 
 package ssf4s
 
+import org.scala_tools.time.Implicits._
+
 /** Feed Parser. */
 trait FeedParser {
 
@@ -59,7 +61,7 @@ trait FeedParser {
   // -----------------------------------------------------------------------
 
   /** Returns the date parser. */
-  def dateFormat: java.text.DateFormat
+  def dateFormatter: DateTimeFormatter
 
   /** Returns the title of the feed. */
   def title(implicit xml: XML): String
@@ -69,11 +71,7 @@ trait FeedParser {
 
   /** Returns the articles of the given feed. */
   def articles(implicit xml: XML): Seq[Article] = xml \\ articleTag map { implicit xml =>
-    val date = try {
-      Some(dateFormat.parse(articlePubDate))
-    } catch {
-      case _ => None
-    }
+    val date = dateFormatter.parseOption(articlePubDate)
 
     Article(articleTitle, date, articleDesc, articleLinks)
   }
@@ -84,7 +82,7 @@ trait FeedParser {
 
   /** Returns when the article has been published. */
   def articlePubDate(implicit xml: XML): String =
-    xml \\ pubDateTag text
+    (xml \\ pubDateTag text) trim
 
   /** Optionally returns the summary of the given article. */
   def articleDesc(implicit xml: XML): Option[String] =

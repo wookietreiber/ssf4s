@@ -31,12 +31,17 @@ package object ssf4s {
   // aliases
   // -----------------------------------------------------------------------
 
+  type URL = java.net.URL
+
   type XML = scala.xml.Node
 
   val XML = scala.xml.XML
 
-  type Date = java.util.Date
+  type DateTime = org.joda.time.DateTime
 
-  type URL = java.net.URL
+  type DateTimeFormatter = org.joda.time.format.DateTimeFormatter
+
+  def forPattern(pattern: String): DateTimeFormatter =
+    org.joda.time.format.DateTimeFormat.forPattern(pattern)
 
 }
