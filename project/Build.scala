@@ -24,5 +24,5 @@ object ssf4sBuild extends Build {
 
 object Dependencies {
   lazy val time = "org.scala-tools.time" %% "time" % "0.5"
-  lazy val specs2 = "org.specs2" %% "specs2" % "1.6.1" % "test"
+  lazy val specs2 = "org.specs2" %% "specs2" % "1.7.1" % "test"
 }
