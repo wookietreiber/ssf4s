@@ -19,7 +19,7 @@ object BuildSettings {
 
 object ssf4sBuild extends Build {
   lazy val root = Project ( "ssf4s", file ("."),
-    settings = buildSettings ++= Seq (
+    settings = buildSettings ++ Seq (
       libraryDependencies ++= Seq ( time, specs2 )
     )
   )
