@@ -6,7 +6,7 @@ import BuildSettings._
 
 object BuildSettings {
   val buildOrganization = "com.github.ssf4s"
-  val buildVersion      = "0.1.1"
+  val buildVersion      = "nightly"
   val buildScalaVersion = "2.9.1"
   val latest            = "latest.integration"
 
