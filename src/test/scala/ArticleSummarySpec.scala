@@ -24,7 +24,7 @@
  ****************************************************************************/
 
 
-package ssf4s
+package scalax.ssf4s
 
 import org.specs2._
 import ResourceParser._

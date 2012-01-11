@@ -24,6 +24,8 @@
  ****************************************************************************/
 
 
+package scalax
+
 /** Simple syndication facade for scala. */
 package object ssf4s {
 

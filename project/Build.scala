@@ -20,7 +20,8 @@ object BuildSettings {
 object ssf4sBuild extends Build {
   lazy val root = Project ( "ssf4s", file ("."),
     settings = buildSettings ++ Seq (
-      libraryDependencies ++= Seq ( time, specs2 )
+      libraryDependencies ++= Seq ( time, specs2 ),
+      initialCommands in Compile in console := """import scalax.ssf4s._"""
     )
   )
 }

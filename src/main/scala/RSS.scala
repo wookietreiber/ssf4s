@@ -24,7 +24,7 @@
  ****************************************************************************/
 
 
-package ssf4s
+package scalax.ssf4s
 
 /** RSS feed parser. */
 object RSS extends FeedParser {

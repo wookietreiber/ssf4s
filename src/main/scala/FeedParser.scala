@@ -24,7 +24,7 @@
  ****************************************************************************/
 
 
-package ssf4s
+package scalax.ssf4s
 
 import org.scala_tools.time.Implicits._
 

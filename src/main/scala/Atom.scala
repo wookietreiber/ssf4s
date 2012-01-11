@@ -24,7 +24,7 @@
  ****************************************************************************/
 
 
-package ssf4s
+package scalax.ssf4s
 
 /** Atom feed parser. */
 object Atom extends FeedParser {
