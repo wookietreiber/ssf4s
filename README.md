@@ -7,7 +7,7 @@ This project is supposed to be to syndication what [slf4s][2] is to logging.
 Using ssf4s
 -----------
 
-Getting a feed is as easy as passing a URL to the `Feed` factory object:
+Retrieving a feed is as easy as passing a URL to the `Feed` factory object:
 
 ```text
 scala> import scalax.ssf4s._
@@ -32,7 +32,7 @@ scala> feed.articles
 res2: Seq[scalax.ssf4s.Article] = List(...)
 
 scala> feed.articles map { _ pubDate }
-res333: Seq[Option[scalax.ssf4s.package.DateTime]] = List(...)
+res3: Seq[Option[scalax.ssf4s.package.DateTime]] = List(...)
 ```
 
 
