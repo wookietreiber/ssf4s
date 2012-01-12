@@ -28,17 +28,14 @@ package scalax.ssf4s
 
 /** Holds the information of a single article.
   *
-  * @param title Returns this articles title.
+  * @param title   Returns this articles title.
   * @param pubDate Optionally returns when this article has been published.
   * @param summary Optionally returns this articles summary, may be html.
-  * @param links Returns the links provided by this article.
+  * @param links   Returns the links provided by this article.
   */
-case class Article(
-    title: String,
-    pubDate: Option[DateTime],
-    summary: Option[String],
-    links: Seq[String]) {
+case class Article(title: String, pubDate: Option[DateTime], summary: Option[String], links: Seq[String]) {
 
   /** Returns this articles title. */
   override def toString = title
+
 }

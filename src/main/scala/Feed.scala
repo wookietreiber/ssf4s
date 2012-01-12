@@ -28,30 +28,30 @@ package scalax.ssf4s
 
 /** Feed factory. */
 object Feed {
-  /** Returns a feed by downloading and parsing the URL content. */
-  def apply(url: String): Feed = apply(xml.XML.load(url))
 
   /** Returns a feed by downloading and parsing the URL content. */
-  def apply(url: URL): Feed = apply(xml.XML.load(url))
+  def apply(url: String): Feed = apply(XML load url)
+
+  /** Returns a feed by downloading and parsing the URL content. */
+  def apply(url: URL): Feed = apply(XML load url)
 
   /** Returns a feed by parsing the XML content. */
   def apply(xml: XML): Feed = xml match {
     case RSS(feed) => feed
     case Atom(feed) => feed
   }
+
 }
 
 /** Holds feed information and its articles.
   *
-  * @param title Returns this feeds title.
+  * @param title       Returns this feeds title.
   * @param description Optionally returns this feeds description.
-  * @param articles Returns this feeds articles, latest first.
+  * @param articles    Returns this feeds articles, latest first.
   */
-case class Feed(
-    title: String,
-    description: Option[String],
-    articles: Seq[Article]) {
+case class Feed(title: String, description: Option[String], articles: Seq[Article]) {
 
   /** Returns this feeds title. */
   override def toString = title
+
 }

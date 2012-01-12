@@ -36,8 +36,7 @@ package object ssf4s {
   type URL = java.net.URL
 
   type XML = scala.xml.Node
-
-  val XML = scala.xml.XML
+  val  XML = scala.xml.XML
 
   type DateTime = org.joda.time.DateTime
 
