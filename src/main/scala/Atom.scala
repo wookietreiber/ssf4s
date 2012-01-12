@@ -27,15 +27,16 @@
 package scalax.ssf4s
 
 /** Atom feed parser. */
-object Atom extends FeedParser {
-  override lazy val feedTag = "feed"
-  override lazy val feedDescTag = "subtitle"
-  override lazy val pubDateTag = "updated"
-  override lazy val articleTag = "entry"
+private[ssf4s] object Atom extends FeedParser {
+  override lazy val feedTag        = "feed"
+  override lazy val feedDescTag    = "subtitle"
+  override lazy val pubDateTag     = "updated"
+  override lazy val articleTag     = "entry"
   override lazy val articleDescTag = "summary"
-  override lazy val dateFormatter = forPattern("YYYY-MM-DD'T'HH:mm:ss'Z")
+  override lazy val dateFormatter  = forPattern("YYYY-MM-DD'T'HH:mm:ss'Z")
 
   override def title(implicit xml: XML) = xml \ titleTag text
+
   override def description(implicit xml: XML) = (xml \ feedDescTag).
     headOption map { _ text } filter { _ nonEmpty }
 

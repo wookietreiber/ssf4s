@@ -29,7 +29,7 @@ package scalax.ssf4s
 import org.scala_tools.time.Implicits._
 
 /** Feed Parser. */
-trait FeedParser {
+private[ssf4s] trait FeedParser {
 
   // -----------------------------------------------------------------------
   // tags
