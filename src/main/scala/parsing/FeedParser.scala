@@ -25,6 +25,7 @@
 
 
 package scalax.ssf4s
+package parsing
 
 import org.scala_tools.time.Implicits._
 

@@ -26,6 +26,8 @@
 
 package scalax.ssf4s
 
+import parsing._
+
 /** Feed factory. */
 object Feed {
 
@@ -37,8 +39,8 @@ object Feed {
 
   /** Returns a feed by parsing the XML content. */
   def apply(xml: XML): Feed = xml match {
-    case RSS(feed) => feed
-    case Atom(feed) => feed
+    case RSSParser(feed)  => feed
+    case AtomParser(feed) => feed
   }
 
 }

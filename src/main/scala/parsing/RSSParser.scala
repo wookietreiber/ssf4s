@@ -25,9 +25,10 @@
 
 
 package scalax.ssf4s
+package parsing
 
 /** RSS feed parser. */
-private[ssf4s] object RSS extends FeedParser {
+private[ssf4s] object RSSParser extends FeedParser {
   override lazy val feedTag        = "rss"
   override lazy val feedDescTag    = "description"
   override lazy val pubDateTag     = "pubDate"

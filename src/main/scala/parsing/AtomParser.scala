@@ -25,9 +25,10 @@
 
 
 package scalax.ssf4s
+package parsing
 
 /** Atom feed parser. */
-private[ssf4s] object Atom extends FeedParser {
+private[ssf4s] object AtomParser extends FeedParser {
   override lazy val feedTag        = "feed"
   override lazy val feedDescTag    = "subtitle"
   override lazy val pubDateTag     = "updated"
