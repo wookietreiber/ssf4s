@@ -1,6 +1,6 @@
 /* **************************************************************************
  *                                                                          *
- *  Copyright (C)  2011  Christian Krause                                   *
+ *  Copyright (C)  2011-2012  Christian Krause                              *
  *                                                                          *
  *  Christian Krause <kizkizzbangbang@googlemail.com>                       *
  *                                                                          *
