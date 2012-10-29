@@ -45,3 +45,8 @@ when opening pull requests.
 [1]: http://nvie.com/posts/a-successful-git-branching-model/
 [2]: https://github.com/weiglewilczek/slf4s
 
+
+---
+
+[![endorse](http://api.coderwall.com/wookietreiber/endorsecount.png)](http://coderwall.com/wookietreiber)
+

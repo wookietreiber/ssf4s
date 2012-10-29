@@ -25,37 +25,24 @@
 package scalax.ssf4s
 
 import scala.xml.Node
-import scala.xml.XML
 
-import java.net.URL
+import org.joda.time.format.DateTimeFormat
 
-/** Feed factory. */
-object Feed {
+/** RSS feed parser. */
+private[ssf4s] object RSSParser extends FeedParser {
+  override lazy val feedTag        = "rss"
+  override lazy val feedDescTag    = "description"
+  override lazy val pubDateTag     = "pubDate"
+  override lazy val articleTag     = "item"
+  override lazy val articleDescTag = "description"
+  override lazy val dateFormatter  = DateTimeFormat.forPattern("EEE, dd MMM yyyy HH:mm:ss Z")
 
-  /** Returns a feed by downloading and parsing the URL content. */
-  def apply(url: String): Option[Feed] = apply(XML load url)
+  override def title(implicit xml: Node) = (xml \\ "channel" \ titleTag).text
 
-  /** Returns a feed by downloading and parsing the URL content. */
-  def apply(url: URL): Option[Feed] = apply(XML load url)
+  override def description(implicit xml: Node) = (xml \\ "channel" \ feedDescTag).
+    headOption map { _.text } filter { _.nonEmpty }
 
-  /** Returns a feed by parsing the XML content. */
-  def apply(xml: Node): Option[Feed] = xml match {
-    case RSSParser(feed)  ⇒ Some(feed)
-    case AtomParser(feed) ⇒ Some(feed)
-    case _                ⇒ None
+  override def articleLinks(implicit xml: Node) = xml \\ linkTag map {
+    _.text
   }
-
-}
-
-/** Holds feed information and its articles.
-  *
-  * @param title       Returns this feeds title.
-  * @param description Optionally returns this feeds description.
-  * @param articles    Returns this feeds articles, latest first.
-  */
-case class Feed(title: String, description: Option[String], articles: Seq[Article]) {
-
-  /** Returns this feeds title. */
-  override def toString = title
-
 }
