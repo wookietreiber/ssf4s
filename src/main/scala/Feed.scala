@@ -39,10 +39,11 @@ object Feed {
 /** Holds feed information and its articles.
   *
   * @param title       Returns this feeds title.
+  * @param url         Returns the URL identifying this feed.
   * @param description Optionally returns this feeds description.
   * @param articles    Returns this feeds articles, latest first.
   */
-case class Feed(title: String, description: Option[String], articles: Seq[Article]) {
+case class Feed(title: String, url: String, description: Option[String], articles: Seq[Article]) {
 
   /** Returns this feeds title. */
   override def toString = title

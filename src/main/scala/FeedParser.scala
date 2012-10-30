@@ -100,7 +100,7 @@ private[ssf4s] trait FeedParser {
 
   /** Optionally returns a parsed feed. */
   def unapply(url: String): Option[Feed] = (XML.load(url) \\ feedTag).headOption map { implicit xml ⇒
-    Feed(title, description, articles)
+    Feed(title, url, description, articles)
   }
 
 }
