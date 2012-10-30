@@ -24,24 +24,13 @@
 
 package scalax.ssf4s
 
-import scala.xml.Node
-import scala.xml.XML
-
-import java.net.URL
-
 /** Feed factory. */
 object Feed {
 
   /** Returns a feed by downloading and parsing the URL content. */
-  def apply(url: String): Option[Feed] = apply(XML load url)
-
-  /** Returns a feed by downloading and parsing the URL content. */
-  def apply(url: URL): Option[Feed] = apply(XML load url)
-
-  /** Returns a feed by parsing the XML content. */
-  def apply(xml: Node): Option[Feed] = xml match {
-    case RSSParser(feed)  ⇒ Some(feed)
+  def apply(url: String): Option[Feed] = url match {
     case AtomParser(feed) ⇒ Some(feed)
+    case RSSParser(feed)  ⇒ Some(feed)
     case _                ⇒ None
   }
 

@@ -27,5 +27,5 @@ package scalax.ssf4s
 import scala.xml.XML
 
 object ResourceParser {
-  def parse(res: String) = Feed(XML.load(getClass.getResource(res))).get
+  def parse(res: String) = Feed(getClass.getResource(res).toString).get
 }

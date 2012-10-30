@@ -25,6 +25,7 @@
 package scalax.ssf4s
 
 import scala.xml.Node
+import scala.xml.XML
 
 import org.joda.time.format.DateTimeFormatter
 
@@ -98,7 +99,7 @@ private[ssf4s] trait FeedParser {
   // -----------------------------------------------------------------------
 
   /** Optionally returns a parsed feed. */
-  def unapply(implicit xml: Node): Option[Feed] = (xml \\ feedTag).headOption map { implicit xml ⇒
+  def unapply(url: String): Option[Feed] = (XML.load(url) \\ feedTag).headOption map { implicit xml ⇒
     Feed(title, description, articles)
   }
 
