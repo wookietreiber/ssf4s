@@ -1,5 +1,5 @@
-The [Simple Syndication Facade for Scala][1] is supposed to be to syndication
-what [slf4s][2] is to logging. Retrieving a feed is as easy as:
+The [Simple Syndication Facade for Scala][1] is supposed to be to syndication what [slf4s][2] is to
+logging. Retrieving a feed is as easy as:
 
     scala> import scalax.ssf4s._
     import scalax.ssf4s._
