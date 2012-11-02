@@ -1,23 +1,16 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                                                                                               *
- *  Copyright  ©  2011-2012  Christian Krause                                                    *
- *                                                                                               *
- *  Christian Krause  <kizkizzbangbang@googlemail.com>                                           *
+ *  This file is part of the project 'ssf4s'.                                                    *
  *                                                                                               *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                                                                                               *
- *  This file is part of 'ssf4s'.                                                                *
+ *  This project is free software. It comes without any warranty, to the extent permitted by     *
+ *  applicable law. You can redistribute it and/or modify it under the terms of the Do What The  *
+ *  Fuck You Want To Public License, Version 2, as published by Sam Hocevar.                     *
  *                                                                                               *
- *  This project is free software: you can redistribute it and/or modify it under the terms      *
- *  of the GNU General Public License as published by the Free Software Foundation, either       *
- *  version 3 of the License, or any later version.                                              *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  *                                                                                               *
- *  This project is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;    *
- *  without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.    *
- *  See the GNU General Public License for more details.                                         *
- *                                                                                               *
- *  You should have received a copy of the GNU General Public License along with this project.   *
- *  If not, see <http://www.gnu.org/licenses/>.                                                  *
+ *  See http://sam.zoy.org/wtfpl/COPYING for more details.                                       *
  *                                                                                               *
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
