@@ -19,8 +19,6 @@ package scalax.ssf4s
 
 import scala.xml.Node
 
-import org.joda.time.format.DateTimeFormat
-
 /** Atom feed parser. */
 private[ssf4s] object AtomParser extends FeedParser {
   override lazy val feedTag        = "feed"
@@ -28,7 +26,6 @@ private[ssf4s] object AtomParser extends FeedParser {
   override lazy val pubDateTag     = "updated"
   override lazy val articleTag     = "entry"
   override lazy val articleDescTag = "summary"
-  override lazy val dateFormatter  = DateTimeFormat.forPattern("YYYY-MM-DD'T'HH:mm:ss'Z")
 
   override def title(implicit xml: Node) = (xml \ titleTag).text
 

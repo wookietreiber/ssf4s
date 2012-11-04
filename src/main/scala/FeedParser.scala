@@ -20,10 +20,6 @@ package scalax.ssf4s
 import scala.xml.Node
 import scala.xml.XML
 
-import org.joda.time.format.DateTimeFormatter
-
-import org.scala_tools.time.Implicits._
-
 /** Feed Parser. */
 private[ssf4s] trait FeedParser {
 
@@ -56,9 +52,6 @@ private[ssf4s] trait FeedParser {
   // parsing
   // -----------------------------------------------------------------------
 
-  /** Returns the date parser. */
-  def dateFormatter: DateTimeFormatter
-
   /** Returns the title of the feed. */
   def title(implicit xml: Node): String
 
@@ -67,9 +60,7 @@ private[ssf4s] trait FeedParser {
 
   /** Returns the articles of the given feed. */
   def articles(implicit xml: Node): Seq[Article] = xml \\ articleTag map { implicit xml ⇒
-    val date = dateFormatter.parseOption(articlePubDate)
-
-    Article(articleTitle, date, articleDesc, articleLinks)
+    Article(articleTitle, articlePubDate, articleDesc, articleLinks)
   }
 
   /** Returns the title of the given article. */
@@ -77,8 +68,10 @@ private[ssf4s] trait FeedParser {
     (xml \\ titleTag).text
 
   /** Returns when the article has been published. */
-  def articlePubDate(implicit xml: Node): String =
-    (xml \\ pubDateTag).text.trim
+  def articlePubDate(implicit xml: Node): Option[String] = (xml \\ pubDateTag).text.trim match {
+    case s if s.nonEmpty ⇒ Some(s)
+    case _               ⇒ None
+  }
 
   /** Optionally returns the summary of the given article. */
   def articleDesc(implicit xml: Node): Option[String] =

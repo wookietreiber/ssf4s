@@ -20,8 +20,6 @@ package scalax.ssf4s
 import org.specs2._
 import ResourceParser._
 
-import org.joda.time.DateTime
-
 class ArticlePublishedSpec extends Specification { def is =
 
   // -----------------------------------------------------------------------
@@ -38,7 +36,7 @@ class ArticlePublishedSpec extends Specification { def is =
   // tests
   // -----------------------------------------------------------------------
 
-  def pubDate(res: String) = ((_: Option[DateTime]) must beSome) forall {
+  def pubDate(res: String) = ((_: Option[String]) must beSome) forall {
     parse(res).articles map { _.pubDate }
   }
 

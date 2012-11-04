@@ -17,8 +17,6 @@
 
 package scalax.ssf4s
 
-import org.joda.time.DateTime
-
 /** Holds the information of a single article.
   *
   * @param title   Returns this articles title.
@@ -26,7 +24,7 @@ import org.joda.time.DateTime
   * @param summary Optionally returns this articles summary, may be html.
   * @param links   Returns the links provided by this article.
   */
-case class Article(title: String, pubDate: Option[DateTime], summary: Option[String], links: Seq[String]) {
+case class Article(title: String, pubDate: Option[String], summary: Option[String], links: Seq[String]) {
 
   /** Returns this articles title. */
   override def toString = title
