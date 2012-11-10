@@ -18,9 +18,8 @@
 package scalax.ssf4s
 
 import org.specs2._
-import ResourceParser._
 
-class FeedDescriptionSpec extends Specification { def is =
+class FeedDescriptionSpec extends Specification with ResourceParser { def is =
 
   // -----------------------------------------------------------------------
   // fragments

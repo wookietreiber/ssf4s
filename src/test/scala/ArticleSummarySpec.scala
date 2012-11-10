@@ -18,9 +18,8 @@
 package scalax.ssf4s
 
 import org.specs2._
-import ResourceParser._
 
-class ArticleSummarySpec extends Specification { def is =
+class ArticleSummarySpec extends Specification with ResourceParser { def is =
 
   // -----------------------------------------------------------------------
   // fragments
