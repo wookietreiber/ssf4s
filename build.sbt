@@ -1,33 +1,65 @@
 
 name := "ssf4s"
 
-organization := "com.github.ssf4s"
-
-description := "Simple Syndication Facade for Scala"
-
 version := "0.2.0-SNAPSHOT"
 
-scalaVersion := "2.10.0-RC1"
-
-crossScalaVersions := Seq("2.9.2", "2.10.0-RC1")
+scalaVersion := "2.10.0-RC2"
 
 libraryDependencies ++= Seq (
-  "org.specs2"           %% "specs2"     % "1.12.2" % "test" cross CrossVersion.full
+  "org.specs2" %% "specs2" % "1.12.2" % "test" cross CrossVersion.full
 )
 
 initialCommands += """
   import scalax.ssf4s._
 """
 
-startYear := Some(2011)
+// -------------------------------------------------------------------------------------------------
+// supplementary project information
+// -------------------------------------------------------------------------------------------------
 
-licenses := Seq("WTFPL" → url("http://sam.zoy.org/wtfpl/COPYING"))
+organization := "com.github.ssf4s"
+
+description := "Simple Syndication Facade for Scala"
 
 homepage := Some(url("https://github.com/wookietreiber/ssf4s"))
 
+startYear := Some(2011)
+
+licenses := Seq (
+  "WTFPL" → url("http://sam.zoy.org/wtfpl/COPYING")
+)
+
 scmInfo := Some(ScmInfo(
-  browseUrl     = url("https://github.com/wookietreiber/ssf4s"),
-  connection    = "scm:git:git://github.com/wookietreiber/ssf4s.git",
-  devConnection = Some("scm:git:https://github.com/wookietreiber/ssf4s.git")
+  url("https://github.com/wookietreiber/ssf4s"),
+  "scm:git:git://github.com/wookietreiber/ssf4s.git",
+  Some("scm:git:https://github.com/wookietreiber/ssf4s.git")
 ))
+
+pomExtra := (
+  <developers>
+    <developer>
+      <id>wookietreiber</id>
+      <name>Christian Krause</name>
+      <url>https://github.com/wookietreiber</url>
+    </developer>
+  </developers>
+)
+
+// -------------------------------------------------------------------------------------------------
+// publishing
+// -------------------------------------------------------------------------------------------------
+
+publishMavenStyle := true
+
+publishTo <<= version { (version: String) ⇒
+  val nexus = "https://oss.sonatype.org/"
+  if (version.trim.endsWith("-SNAPSHOT"))
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+}
+
+publishArtifact in Test := false
+
+pomIncludeRepository := { _ ⇒ false }
 
