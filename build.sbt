@@ -9,7 +9,9 @@ libraryDependencies ++= Seq (
   "org.specs2" %% "specs2" % "1.12.2" % "test" cross CrossVersion.full
 )
 
-initialCommands += """
+initialCommands in (Compile, consoleQuick) <<= initialCommands in Compile
+
+initialCommands in Compile in console += """
   import scalax.ssf4s._
 """
 
